@@ -10,6 +10,7 @@ import (
 	"github.com/magiconair/properties/assert"
 )
 
+// struct for test : tag written correctly
 type testStructOk struct {
 	Lat      float64 `request:"latitude,required"`
 	Lon      float64 `request:"longitude,required"`
@@ -17,6 +18,7 @@ type testStructOk struct {
 	Distance int64   `request:"distance,optional"`
 }
 
+// struct for test : tag written incorrecly
 type testStructNotOk struct {
 	Lat      float64 `request:"latitude,required"`
 	Lon      float64 `request:"longitude,required"`
@@ -26,8 +28,12 @@ type testStructNotOk struct {
 
 func TestReceiver(t *testing.T) {
 	testObjects := []struct {
-		r           http.Request
-		data        *testStructOk
+		r http.Request
+
+		// This is for testing struct assuming that the struct and the tag written correcly
+		data *testStructOk
+
+		// This is for testing struct assuming that the tag written incorrecly
 		dataNotOk   *testStructNotOk
 		ok          bool
 		expectedErr error

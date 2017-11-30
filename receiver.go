@@ -18,11 +18,6 @@ func SetData(data interface{}, r *http.Request) error {
 		return errors.New("data argument must has address eg: &result")
 	}
 
-	form := r.Form
-	if len(form) == 0 {
-		return errors.New("request form is empty")
-	}
-
 	dataType := reflect.TypeOf(data)
 	for i := 0; i < dataValue.Elem().NumField(); i++ {
 		field := dataType.Elem().Field(i)
