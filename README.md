@@ -28,9 +28,12 @@ type Sample struct {
 
 ... some code here
 
-sample := Sample{}
+var sample Sample
 // r is comes from r *http.Request
-receiver.SetData(&Sample,r)
+err := receiver.SetData(&sample,r)
+if err != nil {
+    log.Fatal(err)
+}
 
 ... some code here
 
