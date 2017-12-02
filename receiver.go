@@ -49,6 +49,12 @@ func SetData(data interface{}, r *http.Request) error {
 				*fieldType = parseValue
 			case *string:
 				*fieldType = value
+			case *bool:
+				parseValue, err := strconv.ParseBool(value)
+				if err != nil {
+					return errors.New("Parse bool failed check your tag key " + keyValue)
+				}
+				*fieldType = parseValue
 			}
 		}
 
