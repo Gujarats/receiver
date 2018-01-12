@@ -8,7 +8,12 @@ import (
 	"strings"
 )
 
-const tagKey = "request"
+// this is for the key options and tag
+const (
+	tagKey    = "request"
+	required  = "required"
+	optionnal = "optional"
+)
 
 // Set data value from http.Request.Form
 func SetData(data interface{}, r *http.Request) error {
@@ -65,7 +70,8 @@ func SetData(data interface{}, r *http.Request) error {
 
 // check validator is required or not
 func isRequired(validator string) bool {
-	if validator == "required" {
+	if validator == required {
+
 		return true
 	}
 
