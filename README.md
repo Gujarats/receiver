@@ -25,16 +25,15 @@ type Sample struct {
 	Distance int64   `request:"distance,optional"`
 }
 
+func HandleFunc(w http.ResponseWriter, r *http.Request){
+    var sample Sample
+    err := receiver.SetData(&sample,r)
+    if err != nil {
+        log.Fatal(err)
+    }
 
-... some code here
-
-var sample Sample
-// r is comes from r *http.Request
-err := receiver.SetData(&sample,r)
-if err != nil {
-    log.Fatal(err)
+    log.Printf("sample = %+v\n",sample)
 }
 
-... some code here
 
 ```
